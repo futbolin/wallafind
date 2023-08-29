@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:wallafind/core/vm/base_widget.dart';
 import 'package:wallafind/generated/l10n.dart';
 import 'package:wallafind/ui/home/home_page_vm.dart';
 import 'package:wallafind/ui/home/widgets/walla_title.dart';
+import 'package:wallafind/ui/reusable/app_colors.dart';
 import 'package:wallafind/ui/reusable/text_styles.dart';
 import 'package:wallafind/ui/router.dart';
 import 'package:wallafind/utils/screen.dart';
@@ -50,43 +52,51 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 const Divider(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: SizedBox(
-                    height: ScreenUtil.getHeightPercentage(context, 70),
-                    child: ListView.builder(
-                      itemCount: model.findProducts.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            GestureDetector(
-                              child: ListTile(
-                                leading: SizedBox(
-                                  width: ScreenUtil.getWidthPercentage(context, 20),
-                                  child: Image.network(model.findProducts[index].images.first.original),
-                                ),
-                                title: Text(
-                                  model.findProducts[index].title,
-                                  style: kText13BlackRegular,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                ),
-                                trailing: Text(
-                                  (NumberFormat.currency(name: "€")).format(model.findProducts[index].price),
-                                  style: kText13BlackRegular,
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.pushNamed(context, CustomRouter.single, arguments: model.findProducts[index]);
-                              },
-                            ),
-                            const Divider(),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-                )
+                model.busy
+                    ? const SizedBox(
+                        width: 50,
+                        child: LoadingIndicator(
+                          indicatorType: Indicator.ballBeat,
+                          colors: [kColorMain],
+                        ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: SizedBox(
+                          height: ScreenUtil.getHeightPercentage(context, 70),
+                          child: ListView.builder(
+                            itemCount: model.findProducts.length,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  GestureDetector(
+                                    child: ListTile(
+                                      leading: SizedBox(
+                                        width: ScreenUtil.getWidthPercentage(context, 20),
+                                        child: Image.network(model.findProducts[index].images.first.original),
+                                      ),
+                                      title: Text(
+                                        model.findProducts[index].title,
+                                        style: kText13BlackRegular,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
+                                      ),
+                                      trailing: Text(
+                                        (NumberFormat.currency(name: "€")).format(model.findProducts[index].price),
+                                        style: kText13BlackRegular,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      Navigator.pushNamed(context, CustomRouter.single, arguments: model.findProducts[index]);
+                                    },
+                                  ),
+                                  const Divider(),
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                      )
               ],
             ),
           ),
