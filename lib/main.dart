@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:wallafind/ui/router.dart';
+import 'package:wallafind/ui/splash/splash_page.dart';
 import 'generated/l10n.dart';
 
 void main() {
@@ -29,7 +31,8 @@ class MyApp extends StatelessWidget {
         Locale("es", ''),
         Locale("en", ''),
       ],
-      home: const Scaffold(),
+      home: const SplashPage(),
+      onGenerateRoute: CustomRouter.generateRoute,
     );
   }
 }
