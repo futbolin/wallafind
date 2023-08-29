@@ -10,11 +10,11 @@ class WallaTitle extends StatelessWidget {
       children: [
         Text(
           "walla",
-          style: kText23MainColorRegular,
+          style: kText30MainColorRegular,
         ),
         Text(
           "find",
-          style: kText23BlackBold,
+          style: kText30BlackBold,
         ),
       ],
     );

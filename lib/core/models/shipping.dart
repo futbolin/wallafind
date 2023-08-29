@@ -3,12 +3,12 @@ import 'dart:convert';
 class Shipping {
   bool itemIsShippable;
   bool userAllowsShipping;
-  String costConfigurationId;
+  String? costConfigurationId;
 
   Shipping({
     required this.itemIsShippable,
     required this.userAllowsShipping,
-    required this.costConfigurationId,
+    this.costConfigurationId,
   });
 
   factory Shipping.fromRawJson(String str) => Shipping.fromJson(json.decode(str));

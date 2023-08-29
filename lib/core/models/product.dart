@@ -11,12 +11,12 @@ class Product {
   String id;
   String title;
   String description;
-  int distance;
+  double distance;
   List<Image> images;
   User user;
   Flags flags;
   VisibilityFlags visibilityFlags;
-  int price;
+  double price;
   String currency;
   bool freeShipping;
   String webSlug;
