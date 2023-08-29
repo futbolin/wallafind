@@ -15,7 +15,8 @@ class HomePageVM extends BaseVM {
     Uri uri = Uri.parse(ApiRouter.searchRoute + textToSearch);
     final Response response = await get(uri);
     if (response.statusCode == 200) {
-      Map<String, dynamic> json = jsonDecode(response.body);
+      Map<String, dynamic> json = jsonDecode(utf8.decode(response.bodyBytes));
+
       List<dynamic> listToCast = json["search_objects"];
       findProducts = listToCast.map((e) => Product.fromJson(e)).toList();
     }
