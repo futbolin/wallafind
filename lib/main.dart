@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: kColorMain,
-          background: kColorWhite,
         ),
         useMaterial3: true,
       ),

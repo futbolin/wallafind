@@ -22,11 +22,7 @@ abstract class CustomRouter {
       default:
         return null;
     }
-    return PageRouteBuilder(
-      transitionDuration: Duration.zero,
-      settings: settings,
-      pageBuilder: (_, __, ___) => routeWidget,
-      transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-    );
+    
+    return MaterialPageRoute<void>(builder: (BuildContext context) => routeWidget, settings: settings);
   }
 }
