@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:wallafind/ui/home/home_page.dart';
 import 'package:wallafind/ui/splash/splash_page.dart';
 
 abstract class CustomRouter {
   static const String splash = "/splash";
- 
+  static const String home = "/home";
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     String route = settings.name ?? "";
@@ -15,6 +16,9 @@ abstract class CustomRouter {
       case splash:
         routeWidget = const SplashPage();
         break;
+      case home:
+        routeWidget = const HomePage();
+        break;
       default:
         return null;
     }
@@ -25,5 +29,4 @@ abstract class CustomRouter {
       transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
     );
   }
-  
 }
